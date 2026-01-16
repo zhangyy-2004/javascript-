@@ -1,0 +1,32 @@
+.counter {
+
+    &__list {
+        @extend %flex,
+        %align-items-center;
+        gap: 10px;
+
+        @include breakpoint(xxl) {
+            gap: 20px;
+        }
+    }
+
+    &__item {
+        @extend %text-center,
+        %hidden;
+        background-color: $theme-shade;
+        border-radius: 4px;
+
+        &-number {
+            @extend %mb-0;
+            padding: .4rem .9rem;
+            background-color: $theme-color;
+            color: $white-color;
+        }
+
+        &-text {
+            @extend %mb-0;
+            color: $title-color;
+            font-weight: 700;
+        }
+    }
+}

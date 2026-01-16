@@ -1,0 +1,23 @@
+.rating {
+    @extend %flex,
+    %align-items-center;
+    column-gap: 10px;
+    row-gap: 5px;
+
+    &__list {
+        @extend %flex,
+        %align-items-center,
+        %mb-0;
+        gap: 4px;
+    }
+
+    &__item {
+        color: $theme-color;
+
+        i,
+        svg {
+            @include font-size(14px);
+            color: inherit;
+        }
+    }
+}

@@ -1,0 +1,208 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+
+
+.hide-text {
+  overflow: hidden;
+  padding: 0;
+  /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+ul {
+  li {
+    list-style: none;
+    @extend %ml-0;
+  }
+}
+
+
+//====================================
+// Gradient BG utilities
+//====================================
+
+
+
+
+
+//colors
+.color {
+  &--theme-color {
+    color: $theme-color;
+  }
+
+  &--secondary-color {
+    color: $secondary-color;
+  }
+
+  &--white-color {
+    color: $white-color;
+  }
+}
+
+
+//backgrounds
+.bg {
+  &--cover {
+    background-size: cover;
+    background-position: center;
+  }
+
+  &--primary {
+    background-color: $primary-color;
+  }
+
+  &--body2 {
+    background-color: $body-color2;
+  }
+
+  &--white {
+    background-color: $white-color;
+  }
+
+  &--gradient-primary {
+    background-image: radial-gradient(circle, rgb(25, 27, 72) 0%, rgba(5, 6, 29, 0) 95%);
+  }
+
+  &--lightbg {
+    background-color: $bg-color;
+  }
+
+  &--image {
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+//paddings
+
+.py-60 {
+  padding-block: 50px;
+
+  @include breakpoint(lg) {
+    padding-block: 60px;
+  }
+}
+
+.py-70 {
+  padding-block: 60px;
+
+  @include breakpoint(lg) {
+    padding-block: 70px;
+  }
+}
+
+
+//margins
+.mt-5 {
+  @extend %mt-5;
+}
+
+.mt-10 {
+  @extend %mt-10;
+}
+
+.mt-15 {
+  @extend %mt-15;
+}
+
+.mt-20 {
+  @extend %mt-20;
+}
+
+.mt-25 {
+  @extend %mt-25;
+}
+
+.mt-30 {
+  @extend %mt-30;
+}
+
+.mt-35 {
+  @extend %mt-35;
+}
+
+.mt-40 {
+  @extend %mt-40;
+}
+
+.mt-45 {
+  @extend %mt-45;
+}
+
+.mt-50 {
+  @extend %mt-50;
+}
+
+.mb-5 {
+  @extend %mb-5;
+}
+
+.mb-10 {
+  @extend %mb-10;
+}
+
+.mb-15 {
+  @extend %mb-15;
+}
+
+.mb-20 {
+  @extend %mb-20;
+}
+
+.mb-25 {
+  @extend %mb-25;
+}
+
+.mb-30 {
+  @extend %mb-30;
+}
+
+.mb-35 {
+  @extend %mb-35;
+}
+
+.mb-40 {
+  @extend %mb-40;
+}
+
+.mb-45 {
+  @extend %mb-45;
+}
+
+.mb-50 {
+  @extend %mb-50;
+}
+
+
+.mb-50n {
+  margin-bottom: -40px;
+
+  @include breakpoint(lg) {
+    margin-bottom: -50px;
+  }
+}

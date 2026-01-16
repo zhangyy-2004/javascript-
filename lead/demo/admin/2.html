@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/v3.2.8/vue.global.prod.js"></script>
+		<script src="js/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<table cellpadding=0 cellspacing=0 width=400 border="1">
+				<tr>
+					<td>序号</td>
+					<td>id</td>
+					<td>姓名</td>
+					<td>年龄</td>
+					<td>地址</td>
+					<td>删除</td>
+					<td>编辑</td>
+				</tr>
+				<template v-for="student,index in students">
+					<tr>
+						<td>{{index+91}}</td>
+						<td>{{student.usersId}}</td>
+						<td>{{student.usersName}}</td>
+						<td>{{student.usersAge}}</td>
+						<td>{{student.usersAddr}}</td>
+						<td><button @click="delUser(student.usersId)">删除</button></td>
+						<td><a :href="'edit.html?id='+student.usersId">编辑</a></td>
+					</tr>
+				</template>
+			</table>
+			<button @click="pre">上一页</button><button @click="next">下一页</button>
+		</div>
+		<script type="text/javascript"> 
+			var App = {
+				data(){
+					return{
+						msg:'hello',
+						pageno:1,
+						students:[]
+					}
+				},
+				methods:{
+					pre(){
+						this.pageno --;
+						if(this.pageno ==0){
+							this.pageno = 1;
+						}
+						var url = "http://127.0.0.1:100/users/list/"+this.pageno;
+						axios.get(url)
+						.then(res=>{
+							//console.log(res.data);
+							this.students = res.data;
+						})
+						.catch();
+					},
+					next(){
+						this.pageno++;
+						var url = "http://127.0.0.1:100/users/list/"+this.pageno;
+						axios.get(url)
+						.then(res=>{
+							//console.log(res.data);
+							this.students = res.data;
+						})
+					},
+					delUser(id){
+						if(confirm("你是否确认删除该行数据?")==true){
+							var url = "http://127.0.0.1:100/users/"+id;
+							axios.delete(url)
+							.then(res=>{
+								if(res.data==true){
+									axios.get("http://127.0.0.1:100/users/list/1")
+									.then(res=>{
+										//console.log(res.data);
+										this.students = res.data;
+									})
+									.catch();
+								}
+							})
+							.catch();
+						}
+					}
+				},
+				mounted(){
+					axios.get("http://127.0.0.1:100/users/list/1")
+					.then(res=>{
+						//console.log(res.data);
+						this.students = res.data;
+					})
+					.catch();
+				}
+			}
+			Vue.createApp(App).mount("#app")
+		</script>
+	</body>
+</html>

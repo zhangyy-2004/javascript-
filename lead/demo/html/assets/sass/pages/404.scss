@@ -1,0 +1,36 @@
+/*====== Error page start here ======*/
+.error {
+    .section-wrapper {
+        .zero-item {
+            padding: 60px;
+            @extend %text-center;
+            background: $ash-color;
+            border-radius: 5px;
+
+
+            .zero-content {
+                @extend %mt-40;
+
+                h2 {
+                    @extend %mb-20;
+                }
+
+                p {
+                    @extend %mb-40;
+                    max-inline-size: 60ch;
+                    margin-inline: auto;
+                }
+
+                .lab-btn {
+                    @extend %bg-theme;
+                    color: $white-color;
+                    font-weight: 700;
+
+                    span {
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+    }
+}

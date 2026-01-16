@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - EcoMarket</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+	<script src="js/axios.min.js"></script>
+	<script src="js/vue.global.prod.js"></script>
+</head>
+
+<body>
+<div class="nav_top">
+    <div class="nav_tcon">
+        <div class="logoimg"><img src="images/logo.png" alt="EcoMarket Logo" /></div>
+        <div class="logotitle">
+            <span>EcoMarket</span>
+            <!-- <p>Fresh Organic Grocery</p> -->
+        </div>
+        <div class="logoname">账号登录</div>
+    </div>
+</div>
+
+<div class="logo_content">
+    <div class="logo_ccon" id="app">
+        <img class="logobei" src="images/login-bg.jpg" alt="背景图" />
+        <div class="logo_enter">
+            <span class="login-title">请使用EcoMarket账号进行登录</span>
+            <span>登录名：</span>
+            <input class="use_name" type="text" placeholder="11位手机号码或邮箱" v-model="username"/>
+            <span>登录密码：<a href="forgot-password.html">忘记登录密码？</a></span>
+            <input class="use_password" type="password" placeholder="登录密码" v-model="password"/>
+            <button type="button" class="login-btn" @click="login">登&nbsp;&nbsp;录</button>
+            <div class="logo_zc"><a href="register.html">没有账号？立即注册</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="down_info">
+    <div class="information">
+        <a href="#">关于我们</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">联系我们</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">法律声明</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">隐私政策</a>
+    </div>
+    <p>EcoMarket - 新鲜有机杂货店</p>
+    <p style="font-size:12px">© 2026 EcoMarket.com 版权所有</p>
+</div>
+<script type="text/javascript">
+	let baseUrl="http://127.0.0.1/admin/";
+	let App = {
+		data(){
+			return{
+				username:'',
+				password:''  
+			}
+		},
+		methods:{
+			login(){
+				let url=baseUrl + "login?username="+this.username+"&password="+this.password;
+				axios.get(url) 
+				.then(res=>{
+					console.log(res.data);
+					if(res.data==true){
+						//保存用户信息，跳转到index界面
+						sessionStorage.setItem("user",this.username);
+						window.location.href="index.html";
+					}else{
+						alert("用户登录失败");
+					}
+				})
+				.catch();
+			}
+		},
+		mounted(){
+			
+		}
+	}
+	Vue.createApp(App).mount("#app");
+</script>
+</body>
+</html>

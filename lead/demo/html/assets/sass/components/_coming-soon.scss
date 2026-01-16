@@ -1,0 +1,146 @@
+.coming-soon {
+    @extend %hidden;
+
+    @include breakpoint(lg) {
+        height: 100vh;
+    }
+
+    &__inner {
+        @extend %flex,
+        %justify-center;
+        height: 100vh;
+
+        @include breakpoint(lg) {
+            flex-direction: row-reverse;
+            height: 100%;
+        }
+    }
+
+    &__thumb {
+        @extend %h-100;
+
+        a {
+            display: block;
+            height: inherit;
+        }
+
+        @include breakpoint(lg) {
+            width: 35%;
+            height: 100%
+        }
+
+        img {
+            @extend %h-100;
+            object-fit: cover;
+        }
+    }
+
+    &__content {
+        @extend %text-center;
+        display: grid;
+        place-content: center;
+        padding-inline: 30px;
+        padding-block: 50px;
+
+        @include breakpoint(md) {
+            padding-block: 80px;
+        }
+
+        h2 {
+            @extend %mb-20;
+        }
+
+        >p {
+            @extend %mb-40;
+            @include font-size(30px);
+
+
+            @include breakpoint(lg) {
+                max-inline-size: 80%;
+                margin-inline: auto;
+            }
+        }
+
+        @include breakpoint(lg) {
+            width: 65%;
+        }
+
+        .countdown {
+            @extend %mb-30;
+
+            @include breakpoint(lg) {
+                margin-bottom: 40px;
+            }
+        }
+
+        .input-group {
+
+            @include breakpoint(lg) {
+                max-inline-size: 70%;
+                margin-inline: auto;
+            }
+
+            .form-control {
+                padding: 1rem;
+                border: none;
+                background-color: $ash-color;
+                border: 1px solid $border-color;
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+            &-text {
+                background: $theme-color;
+                color: $white-color;
+                padding: 1rem 1.75rem;
+                border: none;
+
+
+                i {
+                    @include font-size(20px);
+                }
+            }
+        }
+    }
+
+    .social {
+        gap: 10px;
+
+        &__link {
+            @include box(45px);
+            background-color: $grey-color;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: $theme-color;
+                border-color: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+
+
+.countdown {
+    @extend %flex;
+    gap: 30px;
+
+    @include breakpoint(lg) {
+        gap: 40px;
+    }
+
+    @include breakpoint(xl) {
+        gap: 60px;
+    }
+
+    &__item {
+        @extend %text-center;
+    }
+
+    &__text {
+        @extend %mb-0;
+    }
+}

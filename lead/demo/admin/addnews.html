@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/axios.min.js"></script>
+		<script src="js/vue.global.prod.js"></script>
+	</head>
+	<body>
+		<h2>添加新闻</h2>
+		<div id="app">
+			<table>
+				<tr>
+					<td>新闻标题</td>
+					<td><input type="text" v-model="news.newsTitle"/></td>
+				</tr>
+				<tr>
+					<td>新闻图片</td>
+					<td><input type="text" v-model="news.newsImages"/></td>
+				</tr>
+				<tr>
+					<td>新闻摘要</td>
+					<td><input type="text" v-model="news.newsDes"/></td>
+				</tr>
+				<tr>
+					<td>新闻正文</td>
+					<td><input type="text" v-model="news.newsContent"/></td>
+				</tr>
+			</table>
+			<button @click="addNews">添加新闻</button>
+		</div>
+		<script>
+			var App = {
+				data(){
+					return{
+						news:{
+							newsTitle:'',
+							newsDes:'',
+							newsContent:'',
+							newsImages:''
+						}
+					}
+				},
+				methods:{
+					addNews(){
+						axios.post("http://127.0.0.1:100/news",this.news)
+						.then(res=>{
+							console.log(res.data)
+						})
+						.catch();
+					}
+				},
+				mounted(){
+					
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

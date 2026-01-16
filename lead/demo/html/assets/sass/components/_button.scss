@@ -1,0 +1,107 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+.default-btn {
+    @extend %d-inline-block;
+    @include font-size(16px);
+    @include add-prefix(transition, $transition);
+    color: $white-color;
+    padding: 15px 40px;
+    text-transform: capitalize;
+    border-radius: 2px;
+    background-color: $theme-color;
+    font-weight: bold;
+
+
+    &:hover {
+        @include add-prefix(transform, translateY(-5px));
+        color: $white-color;
+    }
+
+    &--sm {
+        @include font-size(14px);
+        padding: .75rem 1rem;
+    }
+
+    &--style2 {
+        background-color: $theme-shade;
+        color: $theme-color;
+
+        &:hover {
+            background-color: $theme-color;
+        }
+    }
+}
+
+.text-btn {
+    @include font-size(16px);
+    color: $title-color;
+    font-weight: 700;
+    text-transform: capitalize;
+
+
+    &:hover {
+        color: $theme-color;
+    }
+
+    &--2 {
+        @extend %rel;
+
+        &:after {
+            @extend %abs;
+            @include add-prefix(transition, $transition);
+            width: 70%;
+            height: 2px;
+            background-color: currentColor;
+            bottom: -3px;
+            left: 0;
+        }
+
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.play-btn {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: $theme-color;
+    border-radius: 50%;
+    color: $white-color;
+
+    &:hover {
+        color: $white-color;
+    }
+}
+
+
+button {
+    outline: none;
+    border: none;
+}
+
+
+//status button style
+.status-btn {
+    @extend %d-inline-block,
+    %text-center;
+    border: 1px solid currentColor;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    min-inline-size: 110px;
+
+    &--instock {
+        background-color: rgba($success-color, $alpha: .20);
+        color: $success-color;
+    }
+
+    &--stockout {
+        background-color: rgba($danger-color, $alpha: .20);
+        color: $danger-color;
+    }
+}

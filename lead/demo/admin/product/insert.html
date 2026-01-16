@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>商品管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/Iframe.css" />
+		<script type="text/javascript" src="../../html/assets/js/vue.global.js"></script>
+		<script src="../../html/assets/js/axios.min.js"></script>
+		<!-- 新 Bootstrap5 核心 CSS 文件 -->
+		<link rel="stylesheet" href="../../html/assets/css/bootstrap.min.css">
+		
+		<!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+		<script src="../../html/assets/js/popper.min.js"></script>
+		
+		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+		<script src="../../html/assets/js/bootstrap.min.js"></script>
+		<script src="../js/page.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		添加商品页面
+		<div id="app">
+			品名：<input  type="text" v-model="product.proName"/><br />
+			星级：<input  type="number" v-model="product.star"/><br />
+			价格：<input  type="text" v-model="product.proPrice"/><br />
+			<input type="button" value="提交数据" @click="sub"/>
+			<input type="button" value="返回列表" @click="back"/>
+		</div>
+		<script type="text/javascript">
+			let baseUrl = "http://127.0.0.1/product";
+			let App = {
+				data(){
+					return{
+						product:{
+							proName:'',
+							star:0,
+							proPrice:''
+						}
+					}
+				},
+				methods:{
+					sub(){
+						let url = baseUrl + "/save";
+						axios.post(url ,this.product)
+						.then(res=>{
+							if(res.data==true){
+								alert("商品添加成功");
+								window.location.href = "list.html";
+							}else{
+								alert("商品添加失败")
+							}
+						})
+						.catch(error=>{
+							console.error("添加商品出错:", error);
+							alert("商品添加失败，请检查网络连接");
+						});
+					},
+					back(){
+						window.location.href = "list.html";
+					}
+				},
+				mounted(){
+					// 初始化空的商品对象，准备接收用户输入
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

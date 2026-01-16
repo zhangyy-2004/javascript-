@@ -1,0 +1,45 @@
+.about {
+  @extend %hidden;
+
+  &__thumb {
+    @extend %rel;
+    padding-inline-start: 30px;
+    padding-block-end: 30px;
+  }
+
+  &__content {
+    h2 {
+      @extend %mb-20;
+      line-height: 1.25;
+    }
+  }
+
+  &__list {
+    @extend %mt-35;
+
+    &-item {
+      padding-block: .5rem;
+
+      &::before {
+        content: "\f14a";
+        font-family: "Font Awesome 6 Free";
+        color: $theme-color;
+        @extend %mr-10;
+      }
+    }
+  }
+
+  &__feature {
+    @extend %flex,
+    %mt-30;
+    gap: 30px;
+
+    h3 {
+      color: $theme-color;
+    }
+
+    p {
+      @extend %mb-0;
+    }
+  }
+}

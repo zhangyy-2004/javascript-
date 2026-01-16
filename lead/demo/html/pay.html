@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="assets/js/vue.global.js"></script>
+		<script src="assets/js/axios.min.js"></script>
+		<!-- 新 Bootstrap5 核心 CSS 文件 -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+		<script src="assets/js/popper.min.js"></script>
+		
+		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+		<script src="assets/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div id="app">
+			商品名称：{{pro.name}}<br/>
+			总计：{{pro.price}}<br/>
+			<button type="button" class="btn btn-outline-success" @click="buy">购买</button>
+		</div>
+		<script type="text/javascript">//javascript脚本
+			let baseUrl = "http://127.0.0.1/pay/";
+			let App = {
+				data(){
+					return{
+						pro:{name:'',price:''}
+					}
+				},
+				methods:{
+					buy(){
+						let url = baseUrl + this.pro.name + "/" + this.pro.price;
+						console.log(url);
+						//使用js的方式进行页面跳转
+						window.location.href = url;
+					}
+				},
+				mounted(){//在这里远程获取商品的品名等信息
+					this.pro.name = "云南阳光玫瑰葡萄	 ，海南贵妃芒 ";
+					this.pro.price=159;
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

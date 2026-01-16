@@ -1,0 +1,242 @@
+.testimonial {
+    @extend %hidden;
+    @include background-cover;
+    background-position: -1500px;
+
+    @include breakpoint(md) {
+        background-position: center;
+    }
+
+
+    &__wrapper {
+
+        //testimonial
+        &--style2 {
+            @extend %flex,
+            %align-items-center,
+            %justify-between;
+            background-color: $white-color;
+
+        }
+    }
+
+    .section-header {
+        &__content {
+            h2 {
+                max-inline-size: 23ch;
+                margin-inline: auto;
+            }
+        }
+    }
+
+
+    &__content {
+
+        p {
+            @extend %mb-0;
+            border-top: 1px solid $border-color;
+            padding-block-start: 15px;
+        }
+    }
+
+    &__author {
+        @extend %rel,
+        %mb-10;
+
+
+        &:after {
+            @extend %abs;
+            @include add-prefix(transform, translateY(-50%));
+            content: url(../images/testimonial/qoute.svg);
+            right: 10px;
+            top: 50%;
+        }
+
+        &-thumb {
+            @extend %abs;
+            left: 0;
+            bottom: -110px;
+            width: 70px;
+            height: 70px;
+            border: 2px solid $theme-color;
+            border-radius: 50%;
+        }
+
+        &-content {
+            width: calc(100% - 90px);
+
+            h4 {
+                font-weight: 600;
+
+                a {
+                    color: $title-color;
+                }
+            }
+
+        }
+    }
+
+    &__item {
+        @extend %rel;
+        background-color: $white-color;
+        padding: 25px 20px;
+        border-radius: 0;
+
+        &::after {
+            @extend %abs;
+            left: 0;
+            bottom: -35px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 40px 65px 0 0;
+            border-color: $white-color transparent transparent transparent;
+        }
+    }
+
+    &__item2 {
+        &-inner {
+            @extend %flex,
+            %align-items-center;
+
+            @include breakpoint(md) {
+                gap: 20px;
+            }
+
+            @include breakpoint(lg) {
+                gap: 40px;
+            }
+        }
+
+        &-thumb {
+            width: 100%;
+
+            @include breakpoint(md) {
+                width: 35%;
+            }
+
+            img {
+                @extend %w-100;
+                object-fit: cover;
+            }
+        }
+
+        &-content {
+            padding: 30px 20px;
+
+            @include breakpoint(md) {
+                width: calc(100% - 35% - 40px);
+                padding: 30px 0;
+            }
+
+            >span {
+                @extend %mb-20,
+                %d-inline-block;
+            }
+        }
+
+        &-authorText {
+            @extend %mt-25;
+
+            h6 {
+                @extend %mb-5;
+            }
+
+            p {
+                @extend %mb-0;
+            }
+        }
+    }
+
+    &__slider {
+        @extend %hidden,
+        %rel;
+        padding-block-end: 120px;
+
+        &-nav {
+            @extend %flex,
+            %abs;
+            gap: 20px;
+            bottom: 0;
+            right: 0;
+            z-index: 1;
+        }
+
+
+
+        &-prev,
+        &-next {
+            display: inline-grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: $theme-color;
+            color: $title-color;
+            border-radius: 50%;
+        }
+
+
+    }
+
+    &__slider2 {
+        margin-inline-start: 0;
+
+        @include breakpoint(md) {
+            max-inline-size: 80%;
+        }
+
+        &-pagination {
+            display: none;
+
+            @include breakpoint(md) {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                @include add-prefix(transform, rotate(90deg));
+                width: max-content !important;
+                gap: 10px;
+            }
+        }
+
+        //for testimonial style 2
+        &-navs {
+            display: none;
+
+            @include breakpoint(md) {
+                width: 20%;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+
+        }
+
+        &-hashNav {
+            @extend %flex,
+            %justify-center,
+            %mb-0;
+            flex-direction: column;
+            gap: 10px;
+            margin-inline-start: 10px;
+
+            @include breakpoint(lg) {
+                gap: 20px;
+            }
+        }
+
+        &-hashItem {
+            @extend %hidden;
+            @include box(45px);
+            border-radius: 50%;
+
+            @include breakpoint(lg) {
+                @include box(60px);
+            }
+
+            @include breakpoint(xxl) {
+                @include box(70px);
+            }
+        }
+    }
+}

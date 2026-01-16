@@ -1,0 +1,559 @@
+/*================*** Header Section Start Here     ***===================*/
+
+.header {
+    background-color: $white-color;
+
+    &__logo {
+        display: none;
+
+        @include breakpoint(lg) {
+            display: inherit;
+        }
+    }
+
+    &__top {
+        background-color: $theme-color;
+
+        &-wrapper {
+            @extend %flex,
+            %align-items-center,
+            %justify-between;
+
+            * {
+                color: $white-color;
+
+                &:hover {
+                    color: $white-color;
+                }
+            }
+
+            .header__link-list {
+                @extend %mb-0,
+                %flex,
+                %align-items-center;
+                padding-block: 15px;
+                gap: 25px;
+
+                &-item {
+                    font-size: 14px;
+
+                    &:not(:last-child) {
+                        @extend %rel;
+
+                        &:after {
+                            @extend %abs;
+                            @include add-prefix(transform, translateY(60%));
+                            background-color: $white-color;
+                            width: 1px;
+                            height: 10px;
+                            bottom: 50%;
+                            right: -12px;
+
+                        }
+                    }
+
+                    .lang-select {
+                        background-color: transparent;
+                        border: none;
+                        font-size: 14px;
+
+                        &:after {
+                            @include box(7px);
+                            border-color: $white-color;
+                        }
+
+                        .list {
+                            background-color: $theme-color;
+
+                            li {
+
+                                &.selected,
+                                &.focus,
+                                &:hover {
+                                    color: $theme-color;
+                                    background-color: $white-color;
+                                }
+                            }
+
+                        }
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    &__middle {
+        display: none;
+
+        @include breakpoint(lg) {
+            display: block;
+        }
+
+        &-wrapper {
+            @extend %flex,
+            %align-items-center,
+            %justify-center;
+            padding-block: 1.5rem;
+            gap: 15px;
+
+            @include breakpoint(lg) {
+                justify-content: space-between;
+            }
+
+
+        }
+    }
+
+    &__search {
+        @include breakpoint(lg) {
+            margin-inline-start: 5%;
+        }
+
+        .input-group {
+            border: 2px solid $theme-color;
+            border-radius: 10px;
+        }
+
+        .form-control {
+            @extend %rel;
+            border: none;
+            padding: .8rem;
+            padding-inline-start: 1.5rem;
+
+            &:focus {
+                box-shadow: none;
+            }
+
+            @include breakpoint(xxl) {
+                min-width: 300px;
+            }
+        }
+
+        &-icon {
+            background-color: transparent;
+            color: $theme-color;
+            padding-inline: 1rem;
+            border: none;
+        }
+
+        .category-select {
+            @extend %h-100;
+            margin-left: 0 !important;
+            color: $theme-color;
+            font-weight: 600;
+            min-width: 130px;
+            border: none;
+            line-height: 50px;
+            border-radius: 10px !important;
+
+            @include breakpoint(lg) {
+                min-width: 170px;
+            }
+
+            &::after {
+                @include box(7px);
+                border-color: $theme-color;
+            }
+
+            &:before {
+                @extend %abs;
+                @include add-prefix(transform, translateY(-50%));
+                height: 15px;
+                width: 1px;
+                background-color: $theme-color;
+                right: -8px;
+                top: 50%;
+                z-index: 5;
+            }
+        }
+    }
+
+    &__link {
+        @extend %flex,
+        %align-items-center,
+        %justify-center,
+        %w-100;
+        gap: 20px;
+
+        @include breakpoint(lg) {
+            width: auto;
+        }
+
+
+        &-list {
+            @extend %flex,
+            %align-items-center,
+            %mb-0;
+            gap: 20px;
+
+            @include breakpoint(lg) {
+                gap: 25px;
+            }
+        }
+
+        &-login,
+        &-wishlist,
+        &-cart,
+        &-call {
+            @extend %flex,
+            %align-items-center;
+            gap: 10px;
+            color: $text-color;
+
+            .header__link-list-icon {
+                @include box(35px);
+                border-radius: 50%;
+                display: inline-grid;
+                place-items: center;
+                background-color: $theme-shade;
+                color: $theme-color;
+            }
+
+            .header__link-list-text {
+                display: none;
+
+                @include breakpoint(xl) {
+                    display: inline;
+                }
+            }
+        }
+
+        &-call {
+            @include breakpoint(lg) {
+                display: none;
+            }
+        }
+    }
+
+    //header primary
+    &__primary {
+        border-top: 1px solid rgba($black-color, $alpha: .10);
+        border-bottom: 1px solid rgba($black-color, $alpha: .10);
+        padding-block: 1rem;
+
+        &-wrapper {
+            @extend %flex,
+            %align-items-center,
+            %justify-between;
+        }
+
+        .nav-container {
+            width: auto;
+        }
+
+        .category-dropdown {
+            display: none;
+            z-index: 5;
+
+            @include breakpoint(lg) {
+                display: inherit;
+            }
+
+            .dropdown-menu {
+                @extend %w-100,
+                %p-20;
+                border-radius: 4px;
+                border: none;
+
+                .dropdown-item {
+                    @extend %align-items-center;
+                    gap: 10px;
+                    display: inline-flex;
+                    border: 1px solid rgba($black-color, $alpha: .10);
+                    border-radius: 3px;
+                    padding: .6rem .75rem;
+                }
+            }
+        }
+
+        .category-btn {
+            background-color: $theme-color;
+            color: $white-color;
+            padding: 15px 20px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+
+            span {
+                @extend %d-inline-block,
+                %mr-5;
+            }
+        }
+    }
+
+    &__call {
+        display: none;
+
+        @include breakpoint(lg) {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 15px;
+        }
+
+        p {
+            @extend %mb-0;
+            text-transform: capitalize;
+        }
+
+        a {
+            color: $theme-color;
+        }
+    }
+
+    &__menu {
+        @extend %w-100;
+
+        @include breakpoint(lg) {
+            width: inherit;
+        }
+    }
+
+    .nav-header {
+        &.left {
+            @extend %flex,
+            %align-items-center,
+            %justify-between;
+
+            .toogle-bar-top {
+                @include font-size(24px);
+                margin-inline-end: 10px;
+
+            }
+
+            &:after {
+                display: none;
+            }
+
+            @include breakpoint(lg) {
+                display: inherit;
+            }
+        }
+
+    }
+
+    .toogle-bar-top {
+        i {
+            @include font-size(30px);
+        }
+    }
+
+}
+
+//hamburger menu icon
+
+
+@mixin icon($height, $width) {
+    transition-duration: 0.5s;
+    position: absolute;
+    height: $height;
+    width: $width;
+    top: 30px;
+    background-color: $black-color;
+}
+
+@mixin icon-before($height, $width, $top) {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $black-color;
+    content: "";
+    top: $top;
+}
+
+@mixin icon-after($height, $width, $top) {
+    transition-duration: 0.5s;
+    position: absolute;
+    width: $width;
+    height: $height;
+    background-color: $black-color;
+    content: "";
+    top: $top;
+}
+
+.toggle-bar {
+    @include box(30px);
+    transition-duration: 0.5s;
+
+    .icon {
+        @include icon(3px, 30px);
+
+        @include breakpoint(lg) {
+            top: 10px;
+        }
+
+        &:before {
+            @include icon-before(3px, 30px, -10px);
+        }
+
+        &:after {
+            @include icon-after(3px, 30px, 10px);
+        }
+    }
+
+    &.open {
+        .icon {
+            transition: 0.5s;
+
+            &:before {
+                transform: rotateZ(-45deg) scaleX(0.75) translate(-10px, -3px);
+            }
+
+            &:after {
+                transform: rotateZ(45deg) scaleX(0.75) translate(-10px, 3px);
+            }
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.primary-nav {
+    background: $white-color;
+}
+
+.menu {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+
+    li {
+
+        &.dropdown {
+            @extend %rel;
+            overflow-y: scroll;
+            overflow-x: hidden;
+
+            @include breakpoint(xl) {
+                overflow: inherit;
+            }
+
+            &.open {
+
+                >a,
+                &:before {
+                    color: $theme-color;
+                }
+            }
+
+            &::before {
+                @extend %abs;
+                content: '\ea99';
+                @include add-prefix(transform, translateY(-50%));
+                font-family: "IcoFont";
+                top: 10px;
+                right: 10px;
+                color: currentColor;
+
+                @include breakpoint(xl) {
+                    right: -10px;
+                }
+            }
+
+            >.dropdown-content {
+                top: 30px;
+            }
+
+            .dropdown {
+                &::before {
+                    right: 10px;
+                    top: 20px;
+                }
+            }
+        }
+
+        &.megamenu {
+            &.open {
+                >a {
+                    color: $theme-color;
+                }
+            }
+
+            >.megamenu-content {
+                top: 30px;
+
+                .megamenu-wrapper {
+                    @extend %p-15;
+                }
+            }
+        }
+
+        a {
+            @extend %d-block;
+            font-size: 14px;
+            font-weight: 700;
+            padding-inline: .5rem;
+        }
+    }
+}
+
+//corenav override
+.core-responsive-slide.open .core-nav .wrap-core-nav-list {
+    padding: 20px;
+}
+
+.overlay.active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($black-color, $alpha: .20);
+    z-index: 2;
+    cursor: url('../images/xmark.svg'),
+        auto;
+}
+
+
+/*================*** Header Section End Here     ***===================*/
+
+
+
+
+
+//============================================
+// * pageheader sectin start here
+//============================================
+
+
+.pageheader-section {
+    padding-block: 70px;
+    background-size: cover;
+    background-position: center;
+
+    @include breakpoint(xl) {
+        padding-block: 150px;
+    }
+
+    .pageheader-title {
+        @include font-size(48px);
+        @extend %text-clamp-1;
+        text-transform: capitalize;
+    }
+
+    .breadcrumb {
+        li {
+            text-transform: capitalize;
+
+            a {
+                color: $theme-color;
+
+            }
+
+            &.active {
+                color: $theme-color;
+            }
+        }
+    }
+}

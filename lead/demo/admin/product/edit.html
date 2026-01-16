@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>商品管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/Iframe.css" />
+		<!-- <link rel="stylesheet" href="../utilLib/bootstrap.min.css" type="text/css" media="screen" /> -->
+		<script type="text/javascript" src="../../html/assets/js/vue.global.js"></script>
+		<script src="../../html/assets/js/axios.min.js"></script>
+		<!-- 新 Bootstrap5 核心 CSS 文件 -->
+		<link rel="stylesheet" href="../../html/assets/css/bootstrap.min.css">
+		
+		<!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+		<script src="../../html/assets/js/popper.min.js"></script>
+		
+		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+		<script src="../../html/assets/js/bootstrap.min.js"></script>
+		<script src="../js/page.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		编辑页面
+		<div id="app">
+			品名：<input  type="text" v-model="product.proName"/><br />
+			星级：<input  type="number" v-model="product.star"/><br />
+			价格：<input  type="text" v-model="product.proPrice"/><br />
+			<input type="button" value="提交数据" @click="sub"/>
+		</div>
+		<script type="text/javascript">
+			let baseUrl = "http://127.0.0.1/product";
+			let App = {
+				data(){
+					return{
+						id:0,
+						product:{}
+					}
+				},
+				methods:{
+					sub(){
+						let url = baseUrl + "/update";
+						axios.post(url ,this.product)
+						.then(res=>{
+							if(res.data==true){
+								window.location.href = "list.html";
+							}else{
+								alert("数据更新失败")
+							}
+						})
+						.catch();
+					}
+				},
+				mounted(){
+					//获取当前传入的id
+					let pid = getQueryString("id");
+					this.id = pid;
+					
+					let url = baseUrl + "/get/" + this.id;
+					axios.get(url)
+					.then(res=>{
+						this.product = res.data;
+					})
+					.catch();
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

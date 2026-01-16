@@ -1,0 +1,393 @@
+//=============== Checkout Page =============
+.checkout {
+    &__title {
+        @extend %mb-20;
+    }
+
+    &__form {
+        .form-control {
+            border-color: rgba($theme-color, $alpha: .30);
+
+            &:focus {
+                box-shadow: none;
+                border-color: $theme-color;
+            }
+        }
+
+        textarea {
+            min-height: 150px;
+        }
+
+        .form-check {
+            &-input {
+                border-color: $theme-color;
+
+                &:checked {
+                    background-color: $theme-color;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+//order details
+.order {
+    &__details {
+        @extend %p-20;
+        border-radius: 5px;
+        background-color: rgba($theme-color, $alpha: .05);
+
+        .table {
+
+            tr {
+
+                td,
+                th {
+                    &:nth-child(2) {
+                        text-align: end;
+                    }
+
+                    th,
+                    td {
+                        text-align: start;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+//===========order complete page
+.order-complete {
+    &__content {
+
+        img,
+        h3 {
+            @extend %mb-20;
+        }
+
+        .default-btn {
+            @extend %mt-20;
+        }
+
+    }
+}
+
+//=========== Shop Cart page =============
+// cart page start here
+.shop-cart {
+    .section-wrapper {
+
+
+        .cart-top {
+            @include breakpoint(max-md) {
+                overflow-x: auto;
+                margin-bottom: 40px;
+
+                &::-webkit-scrollbar {
+                    width: .5em;
+                }
+
+                &::-webkit-scrollbar-track {
+                    box-shadow: inset 0 0 6px rgba($white-color, $alpha: .30);
+                    border-radius: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: $theme-color;
+                    border-radius: 10px;
+                }
+            }
+
+            table {
+                @extend %w-100;
+                margin-bottom: 40px;
+                @extend %text-bold;
+
+                @include breakpoint(max-md) {
+                    width: 720px;
+                }
+
+                thead {
+                    tr {
+                        th {
+                            background-color: $theme-color;
+                            color: $white-color;
+                            padding: 18px;
+                            border: none;
+
+                            &:nth-child(3) {
+                                @extend %text-center;
+                            }
+
+                            &:last-child {
+                                @extend %text-right;
+                            }
+                        }
+                    }
+                }
+
+                tbody {
+                    background-color: $white-color;
+                    box-shadow: 0 0 5px rgba($black-color, $alpha: .10);
+
+                    tr {
+                        border-bottom: 1px solid rgba($white-color, $alpha: .10);
+                        border-right: none;
+                        border-left: none;
+                        border-top: none;
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+
+                        td {
+                            @extend %p-20;
+                            border: none;
+
+                            &:last-child {
+                                @extend %text-right;
+                            }
+
+                            &.product-item {
+                                @extend %flex;
+                                @extend %align-items-center;
+
+                                .p-thumb {
+                                    width: 90px;
+                                }
+
+                                .p-content {
+                                    width: calc(100% - 90px);
+                                    @extend %pl-10;
+
+                                    a {
+                                        color: $title-color;
+                                        font-size: 20px;
+                                        @include add-prefix(transition, $transition);
+
+                                        &:hover {
+                                            color: $theme-color;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .cart-bottom {
+            background-color: $white-color;
+            box-shadow: 0 0 5px rgba($black-color, $alpha: .10);
+
+            .cart-checkout-box {
+                @extend %p-30;
+                row-gap: 15px;
+                @extend %flex;
+                @extend %justify-between;
+                @extend %align-items-center;
+
+                .coupon {
+                    max-width: 340px;
+                    display: flex;
+                    border-radius: 3px;
+                    @extend %hidden;
+
+                    input {
+                        margin-bottom: 0;
+                        border: 1px solid $border-color;
+                        padding: 10px 15px;
+                        outline: none;
+                        width: 100%;
+                    }
+
+                    input[type="submit"] {
+                        background: $theme-color;
+                        margin-left: -10px;
+                        outline: none;
+                        border: none;
+                        color: $white-color;
+                        font-weight: 700;
+                        font-size: 14px;
+                        @extend %pointer;
+                    }
+                }
+
+                .cart-checkout {
+                    @extend %w-100;
+                    @extend %flex;
+
+                    @include breakpoint(sm) {
+                        gap: 20px;
+                    }
+
+
+                    @include breakpoint(lg) {
+                        max-width: 390px;
+                        text-align: right;
+                        justify-content: flex-end;
+                    }
+
+                    input {
+                        color: $title-color;
+                    }
+
+                    input[type="submit"] {
+                        padding: 10px 20px;
+                        @extend %mb-0;
+                        width: auto;
+                        @extend %pointer;
+                        background: rgba($theme-color, $alpha: .10);
+                        border: 1px solid rgba($theme-color, $alpha: .10);
+                        @include add-prefix(transition, $transition);
+                        border-radius: 3px;
+
+
+                        @include breakpoint(max-sm) {
+                            width: 100%;
+                            margin-bottom: 15px;
+
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+
+                        &:hover {
+                            background-color: $theme-color;
+                            border-color: $theme-color;
+                            color: $white-color;
+                        }
+                    }
+                }
+            }
+
+            .shiping-box {
+                padding: 30px 20px;
+                border-top: 1px solid rgba($black-color, $alpha: .10);
+
+                .calculate-shiping {
+                    @include breakpoint(max-md) {
+                        margin-bottom: 30px;
+                    }
+
+                    h4 {
+                        @extend %mb-30;
+                    }
+
+                    .nice-select {
+                        @extend %w-100;
+                        border-color: rgba($theme-color, $alpha: .40);
+
+                        &:focus {
+                            border-color: $theme-color;
+                        }
+
+                        .list {
+                            width: inherit;
+                        }
+                    }
+
+                    input {
+                        @include add-prefix(transition, $transition);
+                        border-color: rgba($theme-color, $alpha: .40);
+                        border-radius: 5px;
+
+                        &:focus {
+                            border-color: $theme-color;
+                        }
+                    }
+                }
+
+                .cart-overview {
+                    h4 {
+                        margin-bottom: 30px;
+                    }
+
+                    ul {
+                        margin: 0;
+
+                        li {
+                            @extend %list-none;
+                            @extend %flex;
+                            @extend %align-items-center;
+                            @extend %justify-between;
+                            border: none;
+                            padding: 10px 20px;
+                            @extend %mb-15;
+                            background: rgba($theme-color, $alpha: .10);
+
+                            .pull-right {
+                                @extend %mb-0;
+                                color: $theme-color;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// cart-plus-minus start here
+.cart-plus-minus {
+    border: none;
+    overflow: hidden;
+    width: 120px;
+    margin: 0 auto;
+    position: relative;
+
+    .dec.qtybutton {
+        left: 0;
+        top: 0;
+    }
+
+    .cart-plus-minus-box {
+        background: rgba($black-color, $alpha: .10) none repeat scroll 0 0;
+        border: medium none;
+        color: $title-color;
+        float: left;
+        font-size: 16px;
+        height: 40px;
+        margin: 0;
+        padding: 0 9px 0 0;
+        text-align: center;
+        width: 120px;
+        outline: none;
+    }
+
+    .qtybutton {
+        @include font-size(18px);
+        background-color: lighten($theme-color, $amount: 25);
+        color: $title-color;
+        cursor: pointer;
+        float: inherit;
+        font-weight: 600;
+        line-height: 40px;
+        margin: 0;
+        position: absolute;
+        text-align: center;
+        transition: all 0.3s ease 0s;
+        width: 40px;
+        height: 40px;
+
+        &:hover {
+            background: $theme-color;
+            color: $white-color;
+        }
+    }
+
+    .inc.qtybutton {
+        height: 40px;
+        right: 0;
+        top: 0;
+    }
+}

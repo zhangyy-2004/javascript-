@@ -1,0 +1,344 @@
+//*----------------------------
+//** Section header section css
+//*----------------------------
+
+.section-header {
+    @extend %flex,
+    %align-items-center,
+    %justify-between,
+    %mb-35;
+
+    @include breakpoint(lg) {
+        margin-bottom: 40px;
+    }
+
+    &__content {
+        p {
+            @extend %mb-10;
+            @include font-size(20px);
+            font-family: $title-font;
+            color: $theme-color;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            @extend %rel;
+            text-transform: capitalize;
+        }
+    }
+
+    &__btn {
+        .nav {
+            border: none;
+
+            button {
+                background-color: transparent;
+                color: $text-color;
+                border: none;
+                font-weight: 600;
+
+                &.active {
+                    background-color: transparent;
+                    color: $theme-color;
+                    font-weight: 700;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &--left {
+        text-align: left;
+    }
+
+}
+
+
+
+//*----------------------------
+//** Section Paddings
+//*----------------------------
+.padding-top {
+    padding-top: 65px;
+
+    @include breakpoint(lg) {
+        padding-top: 75px;
+    }
+}
+
+@include breakpoint(lg) {
+    .padding-lg-top {
+        padding-top: 115px;
+    }
+}
+
+.padding-bottom {
+    padding-bottom: 70px;
+
+    @include breakpoint(lg) {
+        padding-bottom: 80px;
+    }
+}
+
+.bg-attachment {
+    background-attachment: fixed;
+}
+
+
+
+@include breakpoint(xl) {
+    .mr-xl-50-none {
+        margin-right: -50px;
+    }
+
+    .ml-xl-50-none {
+        margin-left: -50px;
+    }
+}
+
+
+
+
+
+
+// social-media
+.social-media {
+    li {
+        a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            @extend %mr-5;
+            border-radius: 50%;
+            @include font-size(20px);
+            @extend %text-center;
+
+            &:hover {
+                color: $white-color;
+                @include add-prefix(transform, translateY(-2px));
+            }
+
+            &.vimeo {
+                background: $vimeo;
+            }
+
+            &.youtube {
+                background: $youtube;
+            }
+
+            &.twitch {
+                background: $twitch;
+            }
+
+            &.facebook {
+                background: $facebook;
+            }
+
+            &.twitter {
+                background: $twitter;
+            }
+
+            &.linkedin {
+                background: $linkedin;
+            }
+
+            &.dribbble {
+                background: $dribbble;
+            }
+
+            &.skype {
+                background: $skype;
+            }
+        }
+    }
+}
+
+
+//social
+.social {
+    @extend %flex,
+    %align-items-center,
+    %mb-0;
+    gap: 5px;
+
+    &__link {
+        @include font-size(18px);
+        @include box(30px);
+        display: grid;
+        place-items: center;
+        color: $text-color;
+    }
+}
+
+// default-pagination
+.default-pagination {
+    @extend %flex;
+    margin: -7px !important;
+    margin-top: 31px !important;
+    @extend %justify-center;
+
+    @include breakpoint(md) {
+        margin-top: 41px !important;
+    }
+
+    li {
+        padding: 7px;
+
+        a {
+            width: 46px;
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            border-radius: 50%;
+            background: $grey-color;
+            color: $black-color;
+
+            &:hover,
+            &.active {
+                background: $theme-color;
+                box-shadow: none;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+
+
+
+// preloader
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+    width: 100%;
+    height: 100%;
+    background: $theme-color;
+
+    .preloader-inner {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+
+        .preloader-icon {
+            width: 72px;
+            height: 72px;
+            display: inline-block;
+            padding: 0px;
+
+            span {
+                position: absolute;
+                display: inline-block;
+                width: 72px;
+                height: 72px;
+                border-radius: 100%;
+                background: $white-color;
+                -webkit-animation: preloader-fx 1.6s linear infinite;
+                -moz-animation: preloader-fx 1.6s linear infinite;
+                animation: preloader-fx 1.6s linear infinite;
+
+                &:last-child {
+                    animation-delay: -0.8s;
+                    -webkit-animation-delay: -0.8s;
+                    -moz-animation-delay: -0.8s;
+                }
+            }
+        }
+    }
+}
+
+@keyframes preloader-fx {
+    0% {
+        transform: scale(0, 0);
+        -webkit-transform: scale(0, 0);
+        -moz-transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes preloader-fx {
+    0% {
+        transform: scale(0, 0);
+        -webkit-transform: scale(0, 0);
+        -moz-transform: scale(0, 0);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        opacity: 0;
+    }
+}
+
+
+// scrollTop
+.scrollToTop {
+    position: fixed;
+    bottom: -30%;
+    right: 5%;
+    z-index: 99;
+
+    i {
+        @extend %d-inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 5px;
+        @extend %text-center;
+        color: $white-color;
+        background: $theme-color;
+        font-size: $fs-h4;
+        @include add-prefix(transition, $transition);
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 20px 0px rgba($theme-color, $alpha: .50);
+        }
+    }
+}
+
+
+//common swiper paginations bulleting style
+
+.swiper-pagination-bullet {
+    @include box(10px);
+    @include add-prefix(transition, $transition);
+    background-color: rgba($black-color, $alpha: .30);
+    opacity: 1;
+
+
+    &-active {
+        @extend %rel;
+        @include box(20px);
+        @include add-prefix(transition, $transition);
+        background-color: $white-color;
+        border: 1px solid $theme-color;
+
+        @include breakpoint(lg) {
+            @include box(30px);
+        }
+
+        &:after {
+            @extend %abs;
+            @include box(10px);
+            @include add-prefix(transform, translate(-50%, -50%));
+            background-color: $theme-color;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+        }
+    }
+}

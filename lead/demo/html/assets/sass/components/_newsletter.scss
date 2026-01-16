@@ -1,0 +1,56 @@
+.newsletter {
+    &__wrapper {
+        @extend %rel;
+        padding-block: 50px;
+        padding-inline: 30px;
+        border-radius: 4px;
+
+        @include breakpoint(lg) {
+            padding-inline: 50px;
+            padding-block: 60px;
+        }
+    }
+
+    &__content {
+        h4 {
+            @extend %mb-20;
+            color: $theme-color;
+        }
+
+        .form-control {
+            border: 1px solid $white-color;
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+
+            &:focus {
+                box-shadow: none;
+                border-color: rgba($theme-color, $alpha: .50)
+            }
+        }
+
+        .default-btn {
+            @include add-prefix(transform, none);
+            padding-inline: 1rem;
+
+            @include breakpoint(sm) {
+                padding-inline: 1.5rem;
+            }
+        }
+    }
+
+    &__image {
+        display: none;
+
+        @include breakpoint(md) {
+            width: auto;
+            display: inherit;
+            position: absolute;
+            bottom: 4px;
+            right: 0;
+        }
+
+        @include breakpoint(lg) {
+            right: 10%;
+        }
+    }
+}

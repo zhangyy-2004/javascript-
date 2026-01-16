@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/page.js"></script>
+		<script src="js/axios.min.js"></script>
+		<script src="js/v3.2.8/vue.global.prod.js"></script>
+	</head>
+	<body>
+		<div id="app"> 
+		<input  type="hidden" :value="users.usersId"/>
+		用户名：<input  type="text" v-model="users.usersName"/><br />
+		年龄：<input  type="text" v-model="users.usersAge"/><br />
+		地址:<input type="text" v-model="users.usersAddr"/><br />
+		密码：<input type="password" v-model="users.usersPass"/><br />
+		<button @click="saveEdit">保存修改</button>
+		</div>
+		<script>
+			var App = {
+				data(){
+					return{
+						users:{
+							usersId:'',
+							usersName:'',
+							usersAge:'',
+							usersAddr:'',
+							usersPass:''
+						} 
+					}
+				},
+				methods:{
+					saveEdit(){
+						//把数据提交到后台
+						axios.put("http://127.0.0.1:100/users",this.users)
+						.then(res=>{
+							if(res.data==true){
+								console.log(true);
+								window.location.href="2.html";
+							}else{
+									console.log(false);
+							}
+						})
+						.catch();
+						//如果后台保存数据成功，则跳转到列表页面
+					}
+				},
+				mounted(){
+					//获取id
+					var id=getQueryString("id");
+					var url = "http://127.0.0.1:100/users/"+id;
+					//通过id在后台获取用户数据，并把数据放入到标签里
+					axios.get(url)
+					.then(res=>{
+						this.users = res.data;
+					})
+					.catch();
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

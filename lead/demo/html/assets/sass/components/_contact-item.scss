@@ -1,0 +1,140 @@
+.contact {
+    &__info {
+        background-color: $ash-color;
+        padding: 40px 30px;
+
+        @include breakpoint(lg) {
+            padding: 70px 50px;
+        }
+
+        &-item {
+            border-bottom: 1px solid $white-color;
+            padding-block: 31px;
+        }
+
+        &-inner {
+            @extend %flex;
+            gap: 20px;
+        }
+
+        &-text {
+            h6 {
+                @extend %mb-5;
+            }
+
+            p {
+                @extend %mb-0;
+                font-weight: 500;
+            }
+        }
+
+        &-follow {
+            @extend %mt-30;
+
+            h5 {
+                @extend %mb-20;
+            }
+
+            .social {
+                gap: 10px;
+
+                &__link {
+                    @include box(40px);
+                    background-color: $white-color;
+                    border-radius: 50%;
+
+                    &:hover {
+                        background-color: $theme-color;
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &__title {
+        @extend %mb-40;
+    }
+}
+
+
+
+
+
+// contact-form
+.contact-form {
+
+    &-wrapper {
+        background-color: $ash-color;
+        padding: 40px 30px;
+
+        @include breakpoint(lg) {
+            padding: 70px 50px;
+        }
+    }
+
+    @extend %flex;
+    justify-content: space-between;
+    margin-bottom: -20px;
+
+    .form-group {
+        margin-bottom: 20px;
+        width: 100%;
+
+        @include breakpoint(sm) {
+            width: calc(50% - 10px);
+        }
+
+
+        input,
+        textarea {
+            @include add-prefix(transition, $transition);
+            border-radius: 2px;
+            background-color: $white-color;
+            color: $title-color;
+
+            &::placeholder {
+                color: rgba($title-color, $alpha: .7);
+            }
+
+            &:focus {
+                border-color: $theme-color;
+            }
+        }
+
+        input {
+            height: 57px;
+            padding: 0 25px;
+        }
+
+        textarea {
+            padding: 25px;
+        }
+    }
+
+    @include breakpoint(max-sm) {
+        margin-bottom: -20px;
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+
+
+// form-message
+.form-message {
+    @extend %m-0;
+    font-size: $fs-base;
+
+    &.success {
+        color: $secondary-color;
+        @extend %mt-30;
+    }
+
+    &.error {
+        color: $theme-color;
+        @extend %mt-30;
+    }
+}

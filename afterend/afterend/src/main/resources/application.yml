@@ -1,0 +1,48 @@
+server:
+  port: 80
+
+mybatis:
+  config-location: classpath:mybatis.cfg.xml    #  如果配置xml方式文件，mybatis主配置文件所在路径
+  type-aliases-package: com.example.demo.entity  #  定义所有操作类的别名所在包
+  mapper-locations:                                     #  如果使用xml配置，所有的mapper映射文件
+    - classpath:com.example.demo.mapper/*.xml
+
+
+
+spring: #springboot的配置
+  datasource: #定义数据源
+    url: jdbc:mysql://127.0.0.1:3306/20260104?serverTimezone=GMT%2B8&useSSL=FALSE
+    username: root  #数据库用户名，root为管理员
+    password: 965520 #该数据库用户的密码
+    type: com.alibaba.druid.pool.DruidDataSource # 使用druid数据源
+
+# mybatis-plus相关配置
+mybatis-plus:
+  # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
+  mapper-locations: classpath:com.example.demo.mapper/*.xml
+  # 以下配置均有默认值,可以不设置
+  global-config:
+    db-config:
+      #主键类型 AUTO:"数据库ID自增" INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: auto
+      #字段策略 IGNORED:"忽略判断"  NOT_NULL:"非 NULL 判断")  NOT_EMPTY:"非空判断"
+      field-strategy: NOT_EMPTY
+      #数据库类型
+      db-type: MYSQL
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+    # 这个配置会将执行的sql打印出来，在开发或测试的时候可以用
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    page-params: pageNum=1;pageSize=10;count=countSql
+
+alipay:
+  #沙箱内容的id
+  appId: 9021000159605684
+  #私钥
+  appPrivateKey:   MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCjHBvxCixaqtzM4TnLbsTl+KBCOc2laFFeAB4XEBCweECzRsr+PRKSGRn9dsoFFdcGugmmJcrNSC1XmvGx08fIcbgADhD6gYS1Z3OOmc6Y4Yp/ErVfgcBnhsI/sa0uzpbHtT59/fz1gePSA17UDQvzGGGBjUdyFyiiLcU1VoxRyX2Codb/2I1psCt4PSABUFVX/ggReib/evnxdXU4seFh5NFx0n1crxTMUcDM9K+2yC8LKqdEuz29Dy3+PCwY1CT0TTJ6WY3Yh6mR/rnldotuOP+98BPT+afn4mlrVzJVl6oX0oTb1jbTnQ3Yz+zo+new+HJ9PaLx5NV8PIH6CaeFAgMBAAECggEAWr4MnXC3dEmSRTkX2iFp0TcckTtvORJsEgumsdXyMvrzo8lCrWZ0qmrklqo7gdDAq7FcJN7pkIMTFqXQyMm1X8JER2OL9pGPrww6sZ7H3S28yy0xUkzxKadC8gR7AItWPwyKE7X1wO/eOrw9SWNovnlV5akfkk1oAbHNAPuBXQ4EEKCEW3y4nlB+3BN3QEFqO1TIbL4ikWild4X6dmNxswtd1RlTFxAJJ6GRrv+hwlYjk66Uy4NW8nSUOj86V+zQK9CrDNpLR45JHAn3hW782SvOcUN0evRDcheOJCjyMSYBKKUejG9lWGzdpjCM/z5tFKiPhM5xukwqWqH0r5wAEQKBgQDTizIkvet/REBB3Q7JRU2H0vaBLkFNUQBQuxW/xF2irfGDWelhc3ITf3iNBOnEj9ZjVhPcZGpZpJ8SC3GfiRAWETiu+oOkdO7VQg0ykWXW92atM4Pqo2R2zFlRebrfFCq6zvpk8j17FK2fWFS2qUKWdMg8CLNIKt/7K94j+sIVqwKBgQDFYzmDKHHfBoHSp//yN9Xnk+vy1ns4q5BSpsa2doGhbzB/Uvr/iryKRp9WNdkW5Uf6F4q59DpK/QecrD57b3H9znzNqaVEO57HYGh5X8Ji5wwDTcW9255jFVXrg7Crtd3vUnYq96AxD39MqldolGZ8TU8bCLv2yZ4cdsJpq3enjwKBgHuotMkxlAYzOXTG6ivRrT6mnZ5qEZZGsW5/znjpKus7zyA/YOOsfpTTQP7+TkCu7F3pJXcB5AE+8BW2RtdBYfvkWURAANAT4sEa+WgEAook2QqKQKTampGvZs7v38MjoM7OyyRTTokyT0QEeJDGZLxay+n8FAEtvvyuag6SOP49AoGBAI3/JZ6O9+wDWF1c8ikjtcPUjAaz+Qz5jueGhqk4c2TZAkB2R46SFbQ7veBc+IEaDD+DtA61/UF46YLx/jj6ITz+0JV7FyMQ6NZxKnc2Rja0E9ZEmp5MYZLSBG9a2zuLp87EubGLVjg099UFLcBUEa4WR3QhQmb0/8NmQ9GUwo1NAoGAIOdDy7apaRYT7ZGYTcQiCrPRddI+h34A69utSxivIwmqdrdZ5/qZY7TfFKOz4xtzndGsDBc4OL/HVO4fNMMpGm3sNXFnbc4Z8BqPj/Rc1tTDOy4o5I6yOET297OAZwLns23QoES5tojGPQHo5eVyphS7Q/L+oBOUzHR9u1l3hlg=
+  alipayPublicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoxwb8QosWqrczOE5y27E5figQjnNpWhRXgAeFxAQsHhAs0bK/j0SkhkZ/XbKBRXXBroJpiXKzUgtV5rxsdPHyHG4AA4Q+oGEtWdzjpnOmOGKfxK1X4HAZ4bCP7GtLs6Wx7U+ff389YHj0gNe1A0L8xhhgY1Hchcooi3FNVaMUcl9gqHW/9iNabAreD0gAVBVV/4IEXom/3r58XV1OLHhYeTRcdJ9XK8UzFHAzPSvtsgvCyqnRLs9vQ8t/jwsGNQk9E0yelmN2Iepkf655XaLbjj/vfAT0/mn5+Jpa1cyVZeqF9KE29Y2050N2M/s6Pp3sPhyfT2i8eTVfDyB+gmnhQIDAQAB
+  #返回的通知地址
+  notifyUrl:

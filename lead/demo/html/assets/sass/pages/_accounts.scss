@@ -1,0 +1,207 @@
+//Registration
+
+/*Account Section Starts Here*/
+.account-wrapper {
+    border-radius: 8px;
+    border: 1px solid rgba($theme-color, $alpha:.2);
+    background: $ash-color;
+    padding: 60px 80px;
+    text-align: center;
+    max-width: 545px;
+    margin: 0 auto 15px;
+
+    .title {
+        @extend %mb-30;
+    }
+
+    @include breakpoint(max-md) {
+        padding: 50px 40px;
+    }
+
+    @media screen and (max-width:499px) {
+        padding: 40px 15px;
+    }
+
+    .cate {
+        font-style: normal;
+
+        a {
+            font-weight: 600;
+            color: $theme-color;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+    }
+
+    .social {
+        @extend %mt-15;
+        gap: 10px;
+
+        &__link {
+            @include box(45px);
+            border: 1px solid rgba($theme-color, $alpha:.8);
+            background-color: $white-color;
+            border-radius: 50%;
+
+            &:hover {
+                background-color: $theme-color;
+                border-color: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+.account-bottom {
+    .subtitle {
+        margin-bottom: 10px;
+
+        @include breakpoint(sm) {
+            font-size: 20px;
+        }
+    }
+}
+
+.account-form {
+    .form-group {
+        @extend %mb-15;
+
+        .form-control {
+            @extend %w-100;
+            @include add-prefix(transition, $transition);
+            border: 1px solid rgba($theme-color, $alpha:.4);
+            border-radius: 5px;
+            background: $white-color;
+            padding: 10px 15px;
+            color: $title-color;
+            line-height: 36px;
+
+            &::placeholder {
+                color: rgba($title-color, $alpha: .50);
+            }
+
+            &:focus {
+                border-color: $theme-color;
+                box-shadow: none;
+            }
+        }
+
+        .form-check {
+            &-input {
+                border-color: $theme-color;
+
+                &:checked {
+                    background-color: $theme-color;
+                    color: $white-color;
+                }
+
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+
+        }
+
+        a {
+            color: $text-color;
+            text-decoration: underline;
+
+            @include breakpoint(max-sm) {
+                font-size: 14px;
+            }
+
+            &:hover {
+                color: $theme-color
+            }
+        }
+
+        button {
+            margin-top: 34px;
+            width: 100%;
+            border: none;
+            outline: none;
+            line-height: inherit;
+
+            @include breakpoint(max-sm) {
+                margin-top: 24px;
+            }
+        }
+    }
+}
+
+.or {
+    display: block;
+    margin: 24px auto 40px;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    background: $theme-color;
+    position: relative;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $white-color;
+
+    span {
+        position: relative;
+        z-index: 1;
+    }
+
+    &::before,
+    &::after {
+        position: absolute;
+        content: "";
+        top: 50%;
+        left: 50%;
+        background: $theme-color;
+        border-radius: 50%;
+        background: rgba($color:$theme-color, $alpha:.3);
+        width: 100%;
+        height: 100%;
+        animation: pulse 2s linear infinite;
+        -webkit-animation: pulse 2s linear infinite;
+        -moz-animation: pulse 2s linear infinite;
+        opacity: 0;
+    }
+
+    &::before {
+        animation-delay: 1s;
+        -webkit-animation-delay: 1s;
+        -moz-animation-delay: 1s;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        @include add-prefix(transform, translate(-50%, -50%) scale(1));
+        opacity: 1;
+    }
+
+    90% {
+        opacity: .5;
+        @include add-prefix(transform, translate(-50%, -50%) scale(1.8));
+    }
+
+    100% {
+        opacity: 0;
+        @include add-prefix(transform, translate(-50%, -50%) scale(2));
+    }
+}
+
+//floating keyframes
+@keyframes floating {
+    0% {
+        transform: translate(0, -10px);
+    }
+
+    50% {
+        transform: translate(0, 10px);
+    }
+
+    100% {
+        transform: translate(0, -10px);
+    }
+}

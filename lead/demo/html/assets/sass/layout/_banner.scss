@@ -1,0 +1,81 @@
+//============================================
+// * Banner sectin start here
+//============================================
+
+.banner {
+    @extend %rel,
+    %hidden;
+    padding-block: 70px;
+    background-color: $primary-color;
+
+    @include breakpoint(lg) {
+        padding-block: 80px;
+    }
+
+    &--2 {
+        background-color: $body-color2;
+    }
+
+    &__slider {
+        &-item {
+            @extend %p-30;
+            border-radius: 10px;
+        }
+
+        &-inner {
+            @extend %flex;
+            aspect-ratio: 5/3;
+
+            @include breakpoint(lg) {
+                @include breakpoint(max-xl) {
+                    aspect-ratio: 4/3;
+                }
+            }
+
+            @include breakpoint(xxl) {
+                aspect-ratio: 6/3;
+            }
+        }
+
+        &-content {
+            align-self: center;
+
+            h2 {
+                @extend %mb-15;
+                max-inline-size: 15ch;
+                color: $white-color;
+
+            }
+
+            p {
+                @extend %mb-25;
+                color: $white-color;
+                max-inline-size: 40ch;
+            }
+        }
+    }
+
+
+    &__content {
+        h1 {
+            @extend %m-0;
+            @extend %mb-10;
+            line-height: 1.125;
+        }
+
+        p {
+            @extend %mb-50;
+            // @extend %pr-30;
+            line-height: 30px;
+            max-inline-size: 55ch;
+            text-transform: capitalize;
+        }
+
+        .btn-grp {
+            @extend %flex,
+            %align-items-center;
+            gap: 30px;
+        }
+    }
+
+}

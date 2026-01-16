@@ -1,0 +1,231 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  background: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部导航栏 */
+.nav_top {
+  width: 100%;
+  height: 80px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav_tcon {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logoimg {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.logoimg img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.logotitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logotitle span {
+  font-size: 24px;
+  font-weight: bold;
+  color: #10b981;
+}
+
+.logotitle p {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+
+.logoname {
+  margin-left: auto;
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 登录内容区 */
+.logo_content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.logo_ccon {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.logobei {
+  width: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.logo_enter {
+  width: 50%;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-title {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: 30px;
+}
+
+.logo_enter span {
+  font-size: 14px;
+  color: #666;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.logo_enter span:first-child {
+  margin-top: 0;
+}
+
+.logo_enter span a {
+  float: right;
+  color: #10b981;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.logo_enter span a:hover {
+  text-decoration: underline;
+}
+
+.use_name,
+.use_password {
+  width: 100%;
+  height: 45px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 0 15px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.use_name:focus,
+.use_password:focus {
+  outline: none;
+  border-color: #10b981;
+}
+
+.login-btn {
+  width: 100%;
+  height: 45px;
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #059669;
+}
+
+.logo_zc {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.logo_zc a {
+  color: #10b981;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.logo_zc a:hover {
+  text-decoration: underline;
+}
+
+/* 底部信息 */
+.down_info {
+  width: 100%;
+  background: #2d3748;
+  color: #fff;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.information {
+  margin-bottom: 15px;
+}
+
+.information a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.information a:hover {
+  text-decoration: underline;
+}
+
+.down_info p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #cbd5e0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .logobei {
+    display: none;
+  }
+
+  .logo_enter {
+    width: 100%;
+    padding: 40px 30px;
+  }
+
+  .logoname {
+    font-size: 16px;
+  }
+
+  .logotitle span {
+    font-size: 20px;
+  }
+}

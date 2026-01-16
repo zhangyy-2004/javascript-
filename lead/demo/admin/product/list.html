@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>商品管理</title>
+		<link rel="stylesheet" type="text/css" href="../css/Iframe.css" />
+		<!-- <link rel="stylesheet" href="../utilLib/bootstrap.min.css" type="text/css" media="screen" /> -->
+		<script type="text/javascript" src="../../html/assets/js/vue.global.js"></script>
+		<script src="../../html/assets/js/axios.min.js"></script>
+		<!-- 新 Bootstrap5 核心 CSS 文件 -->
+		<link rel="stylesheet" href="../../html/assets/css/bootstrap.min.css">
+		
+		<!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+		<script src="../../html/assets/js/popper.min.js"></script>
+		
+		<!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+		<script src="../../html/assets/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div class="container" id="app">
+			<div class="row">
+				<div class="col-8">
+					<span class="cp_title">商品管理</span>
+					<div class="add_cp">
+						<a href="logo.html">+添加商品</a>
+					</div>
+				</div>
+				<div class="col-4" style="padding-top: 30px;">
+					<ul class="pagination">
+					  <li class="page-item"><a class="page-link" href="#" @click="first">首页</a></li>
+					  <li class="page-item"><a class="page-link" href="#" @click="pre">上一页</a></li> 
+					  <li class="page-item"><a class="page-link" href="#" @click="next">下一页</a></li>
+					  <li class="page-item"><a class="page-link" href="#" @click="last">末页</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="row">
+				<table class="table table-hover">
+					<thead>
+						<th>序号</th>
+						<th>商品名</th>
+						<th>图片</th>
+						<th>价格</th>
+						<th>描述</th>
+						<th>编辑</th>
+						<th>删除</th>
+					</thead>
+					<tbody>
+						<template v-for="(product,index) in productList">
+							<tr>
+								<td>{{index+1}}</td>
+								<td>{{product.proName}}</td>
+								<td><img  :src="'/demo/html/assets'+product.proImg" width="50" height="50"/></td>
+								<td>{{product.proPrice}}</td>
+								<td>{{product.proDes}}</td>
+								<td><button class="btn btn-outline-primary" @click="edit(product.proId)">编辑</button></td>
+								<td><button class="btn btn-outline-primary" @click="del(product.proId)">删除</button></td>
+							</tr>
+						</template> 
+					</tbody>
+				</table>
+				
+			</div>
+			
+			<div class="row">
+				<!-- {{productList}} -->
+			</div>
+		</div>
+		<script type="text/javascript">
+			let baseUrl = "http://127.0.0.1/product"
+			let App = {
+				data(){
+					return{
+						currPage:1,
+						rows:1,//总行数
+						pageCount:1,//总页码
+						productList:[]
+					}
+				},
+				methods:{
+					first(){
+						this.getDatas(1);
+						this.calcPageCount();
+					},
+					last(){
+						this.getDatas(this.pageCount);
+						this.calcPageCount();
+					},
+					pre(){
+						this.currPage --;
+						if(this.currPage == 0){
+							this.currPage = 1;
+						}
+						this.getDatas(this.currPage);
+						this.calcPageCount();
+						
+					},
+					next(){
+						this.currPage ++;
+						if(this.currPage > this.pageCount){
+							this.currPage = this.pageCount;
+						}
+						this.getDatas(this.currPage);
+						this.calcPageCount();
+					},
+					getByPage(pageNum){
+						let url = baseUrl + "/list/"+pageNum;
+						axios.get(url)
+						.then(res=>{
+							this.productList = res.data;
+							console.log(res.data);
+						})
+						.catch();
+					},
+					getRows(){
+						let url = baseUrl + "/rows";
+						axios.get(url)
+						.then(res=>{
+							this.rows = res.data;
+						})
+						.catch();
+						this.calcPageCount();
+					},
+					getDatas(pageNum){
+						this.getByPage(pageNum);
+						this.getRows();
+					},
+					calcPageCount(){
+						//总页码=行数/9
+						let count = parseInt(this.rows)/ 9;
+						count = Math.floor(count);
+						console.log(count,"=====================");
+						
+						//如果有余数，则页码+1
+						if(parseInt(this.rows)%9>0){
+							count ++;
+						}
+						this.pageCount = count;
+					},
+					del(id){
+						let url = baseUrl+"/delete/"+id;
+						axios.delete(url)
+						.then(res=>{
+							if(res.data == true){
+								alert("删除成功");
+								window.location.href = "list.html";
+							}
+						})
+						.catch();
+					},
+					edit(id){
+						let url = "edit.html?id="+id;
+						window.location.href = url;
+					}
+				},
+				mounted(){
+					this.getDatas(1);
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,769 @@
+.blog {
+    &__item {
+        @include add-prefix(transition, $transition);
+        background-color: $white-color;
+        box-shadow: $shadow-sm;
+
+        &-thumb {
+            @extend %rel,
+            %hidden;
+
+            img {
+                @extend %w-100;
+                @include add-prefix(transition, $transition);
+            }
+        }
+
+        &-date {
+            @extend %d-inline-block;
+            @include add-prefix(transform, translateY(-20px));
+            @include add-prefix(transition, $transition);
+            background-color: $theme-color;
+            color: $white-color;
+            padding: 10px 20px;
+            border-radius: 2px;
+
+            i {
+                @extend %mr-5;
+            }
+        }
+
+        &-content {
+            padding-inline: 25px;
+
+            h5 {
+                @extend %mb-30;
+
+                a {
+                    @extend %text-2;
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        &:hover {
+            @include add-prefix(transform, translateY(-5px));
+
+            .blog__item {
+
+                &-thumb {
+                    img {
+                        @include add-prefix(transform, scale(1.1));
+                    }
+                }
+
+                &-date {
+                    background-color: $theme-color;
+                }
+            }
+        }
+    }
+
+    &__meta {
+        @extend %flex,
+        %align-items-center,
+        %justify-between;
+        padding-block: 15px;
+        border-top: 1px solid $border-color;
+
+        &-author {
+            span {
+                @extend %mr-5;
+
+                i {
+                    color: $theme-color;
+                }
+            }
+        }
+
+        &-comment {
+            span {
+                @extend %mr-5;
+
+                i {
+                    color: $secondary-color;
+                }
+            }
+        }
+
+        //style for single items
+        &--singleItem {
+            justify-content: flex-start;
+            gap: 15px;
+            border-bottom: 1px solid $border-color;
+            border-top: none;
+            padding-block-start: 10px;
+            padding-block-end: 25px;
+
+            @include breakpoint(sm) {
+                gap: 40px;
+            }
+        }
+    }
+
+    &__slider {
+        padding: 5px;
+
+
+
+        &-nav {
+            @extend %flex,
+            %mt-30;
+            gap: 10px;
+
+            @include breakpoint(lg) {
+                margin-top: 40px;
+            }
+        }
+
+        &-next,
+        &-prev {
+            @include box(40px);
+            display: inline-grid;
+            place-items: center;
+            border: 1px solid $theme-color;
+            border-radius: 50%;
+            color: $theme-color;
+
+            &:hover {
+                background-color: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+
+
+    //Blog item style 2 && used as a single items
+    &__single {
+        &-item {
+            @include add-prefix(transition, $transition);
+            background-color: $ash-color;
+
+
+            &-bottom {
+                padding-block-start: 25px;
+                padding-block-end: 35px;
+            }
+
+            .blog__item {
+                &-content {
+                    h5 {
+                        @extend %mb-15;
+                    }
+                }
+            }
+
+            &:hover {
+                @include add-prefix(transform, translateY(-5px));
+
+                .blog__item {
+
+                    &-thumb {
+                        img {
+                            @include add-prefix(transform, scale(1.1));
+                        }
+                    }
+
+                    &-date {
+                        background-color: $theme-color;
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+
+
+
+//blog article navigation
+.article-pagination {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+
+    .prev-article,
+    .next-article {
+        a {
+            font-size: 14px;
+            font-weight: 700;
+            color: $theme-color;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            @include add-prefix(transition, $transition);
+
+            i {
+                font-size: 18px;
+            }
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+
+        p {
+            margin-bottom: 0;
+            @extend %text-bold;
+        }
+    }
+
+    .next-article {
+        text-align: right;
+    }
+}
+
+
+
+
+
+// tags-area
+.tags-area {
+    @extend %flex;
+    justify-content: center;
+    border-top: 1px solid $border-color;
+    padding: 25px 10px;
+    gap: 15px;
+
+    @include breakpoint(md) {
+        justify-content: space-between;
+    }
+
+    @include breakpoint(sm) {
+        padding: 25px 0 0;
+    }
+}
+
+.tags {
+    @extend %flex,
+    %align-items-center;
+    gap: 10px;
+    margin-bottom: 0;
+
+
+    li {
+
+        h6 {
+            @extend %mb-0;
+            @include font-size(16px);
+        }
+
+        a {
+            background-color: $white-color;
+            color: $title-color;
+            line-height: 40px;
+            padding: 0 15px;
+            border-radius: 2px;
+            text-transform: capitalize;
+
+            &:hover,
+            &.active {
+                background: $theme-color;
+                color: $white-color;
+            }
+        }
+    }
+}
+
+.share {
+    @extend %flex,
+    %mb-0;
+
+    li {
+        padding: 5px;
+        cursor: pointer;
+
+        a {
+            @include box(40px);
+            line-height: 40px;
+            text-align: center;
+            background: $bg-dark;
+            border-radius: 100%;
+            color: $white-color;
+            @include add-prefix(transition, .3s cubic-bezier(.25, .46, .45, .94));
+
+            &.facebook {
+
+                &:hover {
+                    background: $facebook;
+                }
+            }
+
+            &.twitter {
+                &:hover {
+                    background: $twitter;
+                }
+
+            }
+
+            &.instagram {
+                &:hover {
+                    background: $instagram;
+                }
+
+            }
+
+            &.google {
+                &:hover {
+                    background: $google;
+                }
+
+            }
+
+            &.linkedin {
+                &:hover {
+                    background: $linkedin;
+                }
+
+            }
+
+            &.vimeo {
+                &:hover {
+                    background: $vimeo;
+                }
+
+            }
+
+            &.pinterest {
+                &:hover {
+                    background: $pinterest;
+                }
+
+            }
+
+            &.behance {
+                &:hover {
+                    background: $behance;
+                }
+
+            }
+
+            &.dribble {
+                &:hover {
+                    background: $dribble;
+                }
+
+            }
+
+        }
+    }
+}
+
+
+//Blockquote
+.single-quote {
+    @extend %text-center;
+    background: $theme-color;
+    color: $white-color;
+    gap: 20px;
+    padding: 20px;
+
+
+    @include breakpoint(md) {
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        text-align: left;
+
+    }
+
+    @include breakpoint(xxl) {
+        gap: 30px;
+    }
+
+    &-icon {
+        margin-inline: auto;
+        @extend %mb-20;
+        @include box(80px);
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background-color: $white-color;
+
+
+        @include breakpoint(xxl) {
+            @include box(90px);
+        }
+
+        i {
+            @include font-size(36px);
+            color: $theme-color;
+        }
+    }
+
+    .quotes {
+        @extend %text-bold;
+        @include font-size(24px);
+        font-family: $title-font;
+
+        @include breakpoint(md) {
+            width: calc(100% - 100px);
+        }
+
+        @include breakpoint(xxl) {
+            width: calc(100% - 120px);
+        }
+    }
+
+    span {
+        margin-left: auto;
+        display: block;
+        text-align: right;
+        @extend %text-regular;
+        @include font-size($fs-base);
+    }
+}
+
+
+
+
+
+//Realted post items
+.related-post {
+    background-color: $ash-color;
+
+    &__header {
+        @extend %p-20;
+        background-color: $grey-color;
+        border-left: 5px solid $text-color;
+
+        h5 {
+            @extend %mb-0;
+        }
+    }
+
+    &__content {
+        @extend %p-30;
+    }
+
+    &__item {
+        @extend %flex,
+        %align-items-center;
+        gap: 20px;
+
+        &-thumb {
+            @include box(100px);
+            @extend %hidden;
+
+            a {
+                display: inline-flex;
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    @include add-prefix(transition, $transition);
+                    object-fit: cover;
+                }
+            }
+        }
+
+        &-content {
+            width: calc(100% - 120px);
+
+            h6 {
+                @include font-size(16px);
+                line-height: 1.5;
+                @extend %text-clamp-2;
+                margin-bottom: 2px;
+
+                &:hover {
+                    color: $theme-color;
+                }
+            }
+
+            p {
+                margin: 0;
+                color: $theme-color;
+            }
+        }
+
+        &:hover {
+            .related-post__item-thumb {
+                img {
+                    @include add-prefix(transform, scale(1.05));
+                }
+            }
+        }
+    }
+}
+
+// authors
+.author {
+    background-color: $ash-color;
+
+    &__header {
+        @extend .related-post__header;
+    }
+
+    &__item {
+        &-inner {
+            @extend %flex;
+            justify-content: space-between;
+            padding: 30px;
+
+            @include breakpoint(max-sm) {
+                justify-content: center;
+            }
+
+            @include breakpoint(xxl) {
+                padding: 40px;
+            }
+        }
+
+        &-thumb {
+            @include box(120px);
+            text-align: center;
+            border-radius: 100%;
+            @extend %hidden;
+
+            img {
+                height: 100%;
+                border-radius: 100%;
+            }
+        }
+
+        &-content {
+            width: 100%;
+            margin-top: 30px;
+            text-align: center;
+
+            @include breakpoint(sm) {
+                width: calc(100% - 150px);
+                margin-top: 0;
+                text-align: left;
+            }
+
+            >p {
+                @extend %mb-20;
+            }
+
+            &-title {
+                @extend %mb-15;
+
+                h6 {
+                    margin-bottom: 3px;
+                }
+
+                p {
+                    @extend %mb-0;
+                }
+            }
+
+
+
+
+
+        }
+    }
+}
+
+.social-media {
+    @extend %flex,
+    %justify-center;
+    gap: 20px;
+    margin-bottom: 0;
+
+    @include breakpoint(md) {
+        justify-content: flex-start;
+    }
+
+    a {
+        @include font-size(18px);
+        color: $text-color;
+        background: transparent;
+
+        &:hover {
+            color: $theme-color;
+        }
+    }
+}
+
+
+// comments
+.comment {
+    background: $ash-color;
+
+    &__header {
+        @extend .related-post__header;
+    }
+
+    &__list {
+        @include breakpoint(max-sm) {
+            margin: 0;
+        }
+
+        &-item {
+            padding-inline: 30px;
+            padding-block-start: 30px;
+
+            @include breakpoint(xxl) {
+                padding-inline: 40px;
+                padding-block-start: 40px;
+            }
+
+            &:not(:first-child) {
+                border-top: 1px solid $border-color;
+            }
+
+            .comment__list {
+                &-item {
+                    border-top: 1px solid $border-color;
+                    padding-inline-end: 0;
+                }
+            }
+        }
+    }
+
+    &__item {
+        &-thumb {
+            height: 50px;
+            width: 50px;
+            @extend %hidden;
+            @extend %mb-15;
+            margin-right: 17px;
+            float: left;
+            border: 5px solid rgba($white-color, $alpha: .1);
+            border-radius: 100%;
+
+            @include breakpoint(sm) {
+                margin-bottom: 0;
+            }
+
+            @include breakpoint(md) {
+                height: 80px;
+                width: 80px;
+            }
+
+            img {
+                border-radius: 100%;
+            }
+        }
+
+        &-content {
+            @extend %hidden;
+            @extend %pb-20;
+
+            @include breakpoint(max-sm) {
+                width: 100%;
+            }
+
+            >p {
+                max-inline-size: 48ch;
+
+                @include breakpoint(xxl) {
+                    max-inline-size: 60ch;
+                }
+            }
+
+
+        }
+
+        &-title {
+            @extend %mb-15,
+            %flex,
+            %justify-between,
+            %align-items-center;
+            gap: 10px;
+
+
+
+            .reply {
+                @include breakpoint(max-sm) {
+                    margin-bottom: 10px;
+                    display: inline-block;
+                }
+
+                .comment-reply-link {
+                    padding: 3px 16px;
+                    @extend %text-bold;
+                    @include add-prefix(transition, $transition);
+
+                    &:hover {
+                        color: $theme-color;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
+
+        &-meta {
+            h6 {
+                @extend %mb-0;
+                @include font-size(16px);
+            }
+
+            p {
+                @extend %mb-0;
+            }
+        }
+
+        &-reply {
+            background-color: $theme-color;
+            color: $white-color;
+            padding: .35rem 1rem;
+            border-radius: 2px;
+
+            &:hover {
+                color: $white-color;
+                background-color: $secondary-color;
+            }
+        }
+    }
+
+
+    //comment respond css
+    &__respond {
+        background-color: $ash-color;
+    }
+
+    &__add {
+        @extend %p-30;
+    }
+
+    &__form {
+
+        input,
+        textarea {
+            @extend %w-100;
+            padding: 1.2rem 1.5rem;
+            border: 1px solid $border-color;
+            outline: none;
+            background: $white-color;
+            color: $title-color;
+
+            &::placeholder {
+                color: rgba($title-color, $alpha: .9);
+            }
+
+            &:focus {
+                border-color: rgba($theme-color, $alpha: .40);
+            }
+        }
+
+        textarea {
+            min-height: 120px;
+        }
+
+        .default-btn {
+            @extend %mt-40;
+            line-height: inherit;
+        }
+    }
+}
+
+
+// comment-respond
+.comment-respond {
+    @extend %mt-30;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.06));
+    background: $primary-color;
+
+    h6 {
+        border-bottom: 1px solid rgba($white-color, $alpha: .10);
+        @extend %p-30;
+    }
+
+
+}

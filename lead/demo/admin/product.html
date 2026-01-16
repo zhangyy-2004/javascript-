@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/axios.min.js"></script>
+		<script src="js/vue.global.prod.js"></script>
+	</head>
+	<body>
+		
+		<div id="app">
+			<button @click="listAll">全部商品</button><button @click="listByType(1)">饮料</button><button @click="listByType(3)">笔记本</button>
+			<table>
+				<tr>
+					<td>序号</td>
+					<td>品名</td>
+					<td>价格</td>
+					<td>产地</td>
+					<td>描述</td>
+					<td>公司</td>
+				</tr> 
+				<template v-for="product,index in productList">
+					<tr>
+						<td>{{index+1}}</td>
+						<td>{{product.productName}}</td>
+						<td>{{product.productPrice}}</td>
+						<td>{{product.productPlace}}</td>
+						<td>{{product.productDes}}</td>
+						<td>{{product.productFac}}</td>
+					</tr>
+				</template>
+			</table>
+		</div>
+		<script>
+			var App = {
+				data(){
+					return{
+						productList:[]
+					}
+				},
+				methods:{
+					listAll(){
+						axios.get("http://127.0.0.1:100/product/list")
+						.then(res=>{
+							console.log(res.data);
+							this.productList = res.data;
+						})
+						.catch();
+					},
+					listOne(){
+						axios.get("http://127.0.0.1:100/product/list/1")
+						.then(res=>{
+							console.log(res.data);
+							this.productList = res.data;
+						})
+						.catch();
+					},
+					listThree(){
+						axios.get("http://127.0.0.1:100/product/list/3")
+						.then(res=>{
+							console.log(res.data);
+							this.productList = res.data;
+						})
+						.catch();
+					},
+					listByType(type){
+						axios.get("http://127.0.0.1:100/product/list/"+type)
+						.then(res=>{
+							console.log(res.data);
+							this.productList = res.data;
+						})
+						.catch();
+					}
+				},
+				mounted(){
+					axios.get("http://127.0.0.1:100/product/list")
+					.then(res=>{
+						console.log(res.data);
+						this.productList = res.data;
+					})
+					.catch();
+				}
+			}
+			Vue.createApp(App).mount("#app");
+		</script>
+	</body>
+</html>

@@ -1,0 +1,105 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+.footer {
+    @extend %hidden;
+
+    //footer about 
+
+    &__about {
+        .footer__logo {
+            @extend %mb-15;
+        }
+    }
+
+    //footer info list
+    &__infolist {
+        @extend %mb-0;
+
+        &-item {
+            &:not(:last-child) {
+                @extend %mb-15;
+            }
+
+            p {
+                @extend %mb-0;
+                display: inline-flex;
+                gap: 10px;
+
+                i {
+                    color: $theme-color;
+                }
+            }
+        }
+    }
+
+    //footer items
+    &__item {
+        &-title {
+            @extend %mb-30;
+        }
+    }
+
+
+    //footer links
+    &__links {
+
+        &-item {
+            &:not(:last-child) {
+                @extend %mb-15;
+            }
+
+            a {
+                color: $text-color;
+            }
+        }
+    }
+
+    //footer app
+    &__app {
+        @extend %p-25,
+        %text-center;
+        background-color: $theme-color;
+        border-radius: 8px;
+
+        &-content {
+            h4 {
+                @extend %mb-15;
+                color: $white-color;
+            }
+
+        }
+
+        &-list {
+            @extend %flex,
+            %align-items-center;
+            flex-wrap: nowrap;
+            gap: 10px;
+
+        }
+    }
+
+    //footer payment
+    &__payment {
+        @extend %mt-50;
+
+        h6 {
+            @extend %mb-15;
+            @include font-size(16px);
+            color: $white-color;
+            font-weight: 500;
+        }
+    }
+
+
+    //footer copyright
+    &__copyright {
+        border-top: 1px solid rgba($white-color, $alpha: .10);
+
+        p {
+            padding-block: 30px;
+            color: $white-color;
+        }
+    }
+}
